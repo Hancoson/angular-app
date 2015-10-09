@@ -1,0 +1,10 @@
+# Created by .gitignore support plugin (hsz.mobi)
+.idea/
+node_modules/
+
+ngApp/**/*.css
+ngApp/**/**/*.css
+
+dist/
+
+bower_components/

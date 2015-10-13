@@ -56,7 +56,7 @@ angular
                     }]
                 }
             })
-
+        //$locationProvider.html5Mode(true);
     })
     .run(['$location', '$rootScope', function ($location, $rootScope) {
         $rootScope.$on('$stateChangeStart',

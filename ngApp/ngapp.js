@@ -1,28 +1,30 @@
 /**
  * Created by Guoxing.han on 15-3-26.
+ * state驱动view
+ * resolve：在路由到达前预载入一系列依赖或者数据，然后注入到控制器中。
  */
 angular.module('ngApp', ['ui.router', 'oc.lazyLoad', 'ngResource']);
 
 angular
     .module('ngApp')
-    .directive('ngEnter', function () {
-        return function (scope, element, attrs) {
-            element.bind("keydown keypress", function (event) {
-                if (event.which === 13) {
-                    scope.$apply(function () {
-                        scope.$eval(attrs.ngEnter);
-                    });
-
-                    event.preventDefault();
-                }
-            });
-        };
-    })
+    //.directive('ngEnter', function () {
+    //    return function (scope, element, attrs) {
+    //        element.bind("keydown keypress", function (event) {
+    //            if (event.which === 13) {
+    //                scope.$apply(function () {
+    //                    scope.$eval(attrs.ngEnter);
+    //                });
+    //
+    //                event.preventDefault();
+    //            }
+    //        });
+    //    };
+    //})
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider, $compileProvider) {
         $locationProvider.hashPrefix('');
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|kaowo|ftp|mailto|chrome-extension):/);
 
-        $urlRouterProvider.otherwise('/404');
+        $urlRouterProvider.otherwise('/404'); //设置默认路由还需要使用ngRoute来设置
 
         $stateProvider
             //404
@@ -43,6 +45,8 @@ angular
                     item: 1
                 },
                 controller   : 'indexCtrl',
+                //views        : {
+                //},
                 templateUrl  : 'ngApp/partial/test.html',
                 resolve      : {
                     loadOcModal: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -55,10 +59,11 @@ angular
                         )
                     }]
                 }
-            })
-        //$locationProvider.html5Mode(true);
+            });
+//$locationProvider.html5Mode(true);
     })
-    .run(['$location', '$rootScope', function ($location, $rootScope) {
+    .
+    run(['$location', '$rootScope', function ($location, $rootScope) {
         $rootScope.$on('$stateChangeStart',
             function (event, toState) {
 

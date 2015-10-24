@@ -1,5 +1,7 @@
 /**
  * Created by han on 15-8-24.
+ * $location 暴露当前地址栏的
+ * $location 是一个创建资源对象的工厂，用来创建同服务端交互的对象
  */
 angular
     .module('ngApp')

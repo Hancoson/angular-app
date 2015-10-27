@@ -82,8 +82,23 @@ ngApp.run(['$location', '$rootScope', function ($location, $rootScope) {
     });
 
 }]);
-ngApp.directive('mySharedScope', function () {
+
+
+/**
+ * 指令 directive
+ * E - 元素
+ *      replace : true <hello>标签被替换
+ *      transclude: true <hello>内部前后添加元素
+ *
+ *
+ * A - 属性
+ * C - 样式类
+ * M - 注释
+ */
+ngApp.directive('hello', function () {
     return {
-        template: '123<br /> Street: 345'
+        restrict: 'E',
+        template: '<div>Hi there</div>',
+        replace : true
     };
 });

@@ -6,5 +6,5 @@ ngApp/**/*.css
 ngApp/**/**/*.css
 
 dist/
-
+.*
 bower_components/

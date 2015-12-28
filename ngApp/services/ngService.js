@@ -1,7 +1,7 @@
 /**
  * Created by han on 15-8-24.
- * $location ±©Â¶µ±Ç°µØÖ·À¸µÄ
- * $location ÊÇÒ»¸ö´´½¨×ÊÔ´¶ÔÏóµÄ¹¤³§£¬ÓÃÀ´´´½¨Í¬·şÎñ¶Ë½»»¥µÄ¶ÔÏó
+ * $location æš´éœ²å½“å‰åœ°å€æ çš„
+ * $location æ˜¯ä¸€ä¸ªåˆ›å»ºèµ„æºå¯¹è±¡çš„å·¥å‚ï¼Œç”¨æ¥åˆ›å»ºåŒæœåŠ¡ç«¯äº¤äº’çš„å¯¹è±¡
  */
 angular
     .module('ngApp')
@@ -20,11 +20,11 @@ angular
                 'main': 'http://ms.baidu.com',
             };
 
-            domainHosts={
-                'm.baidu.com':'main',
-                'local2main.baidu.com':'main',
-                '192.168.8.107':'dev'
-            };
+        domainHosts={
+            'm.baidu.com':'main',
+            'local2main.baidu.com':'main',
+            '192.168.8.107':'dev'
+        };
         env=domainHosts[domain] || 'dev';
         //host=hosts[env];
 
@@ -36,7 +36,7 @@ angular
 
         return {
             recruit:$resource(host.api+'/mana/apply',{}),
-            //ÑûÇë×¢²á
+            //é‚€è¯·æ³¨å†Œ
             invitePage:$resource(host['ms']+'/adh5/activity/up',{})
         }
     });

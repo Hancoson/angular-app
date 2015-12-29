@@ -89,6 +89,7 @@ ngApp.run(['$location', '$rootScope', function ($location, $rootScope) {
  * E - 元素
  *      replace : true <hello>标签被替换
  *      transclude: true <hello>内部前后添加元素
+ *      priority:(数字)，可选参数，指明指令的优先级
  *
  *
  * A - 属性

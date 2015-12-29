@@ -9,34 +9,41 @@ angular
 
         var
             domain = $location.host(),
-            env ,host,
+            env, host,
             hosts = {
-                'dev'   : 'http://192.168.8.107:1333/v1',
-                'main'  : 'http://api.baidu.com/v1'
+                'dev' : 'http://127.0.0.1:9001/src',
+                'main': 'http://api.baidu.com/v1'
             },
 
             mshosts = {
-                'dev': 'http://192.168.8.107:1331',
+                'dev' : 'http://127.0.0.1:3000',
                 'main': 'http://ms.baidu.com',
             };
 
-        domainHosts={
-            'm.baidu.com':'main',
-            'local2main.baidu.com':'main',
-            '192.168.8.107':'dev'
+        domainHosts = {
+            'm.baidu.com'         : 'main',
+            'local2main.baidu.com': 'main',
+            '127.0.0.1:9001'      : 'dev'
         };
-        env=domainHosts[domain] || 'dev';
+        env = domainHosts[domain] || 'dev';
         //host=hosts[env];
 
         host = {
             api: hosts[env],
-            ms: mshosts[env]
+            ms : mshosts[env]
         };
 
 
         return {
-            recruit:$resource(host.api+'/mana/apply',{}),
-            //邀请注册
-            invitePage:$resource(host['ms']+'/adh5/activity/up',{})
+            /*recruit: $resource(host.api + '/cart/add_sku_to_cart.html', {}, {
+                //其中init方法为自定义，因为需要用到method:'JSONP'，所以不能使用get、query等自带方法，数组直接用isArray设置。
+                init: {
+                    method : 'JSONP',
+                    format: 'json',
+                    params: {callback: 'JSON_CALLBACK'},
+                    isArray: true
+                }
+            })*/
+            recruit: $resource(host.api + '/json/a.json', {})
         }
     });

@@ -4,6 +4,8 @@
 
 目的是让angular的前端项目可以快速启动~
 
+
+
 ##快速开始
 
 1. npm install
@@ -30,3 +32,6 @@
       -tasks   grunt配置文件
       Gruntfile.js
       index.html   入口页面
+      
+## 优化
+- 添加gulp打包

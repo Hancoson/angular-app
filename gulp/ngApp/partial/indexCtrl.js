@@ -12,7 +12,6 @@ angular.module('ngApp')
         $scope.ID = input.cuid;
         $rootScope.title = '这个是title';
         $rootScope.content = '这个是描述';
-
         //获取数据
         var data={
             id:1,
@@ -28,6 +27,7 @@ angular.module('ngApp')
         //代码加载完执行
         $scope.$on('$viewContentLoaded', function () {
 
+            console.log(typeof $);
             //……
         });
     }]);

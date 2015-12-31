@@ -25,17 +25,18 @@ var ngApp = angular.module('ngApp');
 //        });
 //    };
 //})
-ngApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider, $compileProvider) {
+ngApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', '$compileProvider',
+    function ($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider, $compileProvider) {
     $locationProvider.hashPrefix('');
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|kaowo|ftp|mailto|chrome-extension):/);
 
     $urlRouterProvider.otherwise('/404'); //设置默认路由还需要使用ngRoute来设置
 
     $stateProvider
-        //404
+    //404
         .state('404', {
             title        : '404',
-            url          : '/404',
+            url  : '/404',
             defaultParams: {
                 item: 1
             },
@@ -44,8 +45,8 @@ ngApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $o
         //
         .state('test', {
             title        : '这个是title',
-            content      : '这个是描述',
-            url          : '/test/:id',
+            content: '这个是描述',
+            url    : '/test/:id',
             defaultParams: {
                 item: 1
             },
@@ -58,7 +59,6 @@ ngApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $o
                     return $ocLazyLoad.load(
                         [
                             'ngApp/partial/index.css',
-                            //'ngApp/services/ngService.js',
                             'ngApp/partial/indexCtrl.js'
                         ]
                     )
@@ -66,7 +66,7 @@ ngApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $o
             }
         });
 //$locationProvider.html5Mode(true);
-});
+}]);
 ngApp.run(['$location', '$rootScope', function ($location, $rootScope) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
         var userLogin = 0;

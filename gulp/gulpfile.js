@@ -25,7 +25,7 @@ var path = {
     src     : 'src',
     files   : 'ngApp',
     pages   : 'ngApp/partial'
-}
+};
 
 
 // HTML处理
@@ -89,8 +89,8 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest(path.dist + '/' + path.pages))
 });
 
-// Styles
-gulp.task('styles', function () {
+// Styles-page
+gulp.task('stylesPages', function () {
     var processors = {
         autoprefixer: autoprefixer({
             browsers: ['last 2 versions'],
@@ -98,13 +98,22 @@ gulp.task('styles', function () {
             remove  : true //是否去掉不必要的前缀 默认：true
         })
     };
-    //pages
     gulp.src(path.pages + '/*.css')
         .pipe(processors.autoprefixer)
         .pipe(minifycss())
-        .pipe(gulp.dest(path.dist + '/' + path.pages ));
+        .pipe(gulp.dest(path.dist + '/' + path.pages ))
 
-    //common
+});
+
+// Styles-common
+gulp.task('stylesCommon', function () {
+    var processors = {
+        autoprefixer: autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade : true, //是否美化属性值 默认：true
+            remove  : true //是否去掉不必要的前缀 默认：true
+        })
+    };
     gulp.src(path.src + '/styles/reset.css')
         .pipe(processors.autoprefixer)
         .pipe(minifycss())
@@ -119,6 +128,12 @@ gulp.task('images', function () {
         .pipe(gulp.dest(path.dist + '/' + path.src + '/img/'));
 });
 
+// Clean
+gulp.task('clean', function () {
+    return del(['dist']);
+});
+
+
 //dev 环境
 gulp.task('connect.dev', function () {
     connect.server({
@@ -127,7 +142,7 @@ gulp.task('connect.dev', function () {
 });
 
 //发布 环境
-gulp.task('connect.build', function () {
+gulp.task('connect.build',['clean'], function () {
     connect.server({
         root: 'dist',
         port: 7002,
@@ -135,14 +150,8 @@ gulp.task('connect.build', function () {
     });
 });
 
-
-// Clean
-gulp.task('clean', function () {
-    return del(['dist']);
-});
-
 gulp.task('dev', ['connect.dev']);
 
 gulp.task('build', ['connect.build'], function () {
-    gulp.start('html', 'scripts', 'styles','images');
+    gulp.start('html', 'scripts', 'stylesPages', 'stylesCommon','images');
 });

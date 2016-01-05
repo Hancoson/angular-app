@@ -14,7 +14,6 @@
         "node":">=0.10.0"
     },
     "scripts":{
-        "test":"mocha",
         "build":"npm install && bower install"
     },
     "files":[
@@ -32,7 +31,6 @@
         "yosay":"^0.3.0"
     },
     "devDependencies":{
-        "mocha":"*",
         "rimraf":"^2.2.8",
         "gulp":"^3.8.11",
         "gulp-concat":"^2.5.2",

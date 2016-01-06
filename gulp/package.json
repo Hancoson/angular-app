@@ -1,55 +1,53 @@
 {
-    "name":"angular-app",
-    "version":"0.0.1",
-    "description":"angular gulp+webpack",
-    "license":"MIT",
-    "main":"index.html",
-    "repository":"Hancoson/angular-app",
-    "author":{
-        "name":"Hancoson",
-        "email":"hancoson@163.com",
-        "url":"https://github.com/Hancoson/angular-app"
-    },
-    "engines":{
-        "node":">=0.10.0"
-    },
-    "scripts":{
-        "build":"npm install && bower install"
-    },
-    "files":[
-        "app"
-    ],
-    "keywords":[
-        "yeoman-generator"
-    ],
-    "dependencies":{
-        "chalk":"^0.5.0",
-        "less":"^2.4.0",
-        "rimraf":"^2.2.8",
-        "yeoman-generator":"^0.18.0",
-        "include-all":"~0.1.3",
-        "yosay":"^0.3.0"
-    },
-    "devDependencies":{
-        "rimraf":"^2.2.8",
-        "gulp":"^3.8.11",
-        "gulp-concat":"^2.5.2",
-        "gulp-connect":"^2.3.1",
-        "gulp-uglify":"^1.2.0",
-        "gulp-autoprefixer": "^3.0.2",
-        "gulp-webpack":"^1.3.2",
-        "gulp-jshint": "^1.11.2",
-        "gulp-cheerio":"^0.6.2",
-        "gulp-minify-css": "^1.2.1",
-        "gulp-imagemin": "*",
-        "gulp-cache": "*",
-        "gulp-htmlmin":"*",
-        "gulp-sass":"*",
-        "gulp-livereload":"^3.8.1",
-        "gulp-removelogs":"*",
-        "del": "*"
-    },
-    "peerDependencies":{
-        "yo":">=1.0.0"
-    }
+  "name": "angular-app",
+  "version": "0.0.1",
+  "description": "angular gulp+webpack",
+  "license": "MIT",
+  "main": "index.html",
+  "repository": "Hancoson/angular-app",
+  "author": {
+    "name": "Hancoson",
+    "email": "hancoson@163.com",
+    "url": "https://github.com/Hancoson/angular-app"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "build": "npm install && bower install"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "yeoman-generator": "^0.18.0",
+    "include-all": "~0.1.3",
+    "yosay": "^0.3.0"
+  },
+  "devDependencies": {
+    "del": "*",
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^3.0.2",
+    "gulp-cache": "*",
+    "gulp-cheerio": "^0.6.2",
+    "gulp-concat": "^2.5.2",
+    "gulp-connect": "^2.3.1",
+    "gulp-htmlmin": "*",
+    "gulp-imagemin": "*",
+    "gulp-jshint": "^1.11.2",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-removelogs": "*",
+    "gulp-rev-append": "^0.1.6",
+    "gulp-sass": "*",
+    "gulp-uglify": "^1.2.0",
+    "gulp-webpack": "^1.3.2"
+  },
+  "peerDependencies": {
+    "yo": ">=1.5.1"
+  }
 }

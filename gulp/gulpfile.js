@@ -2,11 +2,13 @@
  * Created by Guoxing.han on 2015-12-30.
  */
 'use strict';
+//varsion
+var _version=20160106;
 
 var gulp = require('gulp'),
     connect = require('gulp-connect'),
     concat = require('gulp-concat'),
-    jshint=require('gulp-jshint'),
+    jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
     cheerio = require('gulp-cheerio'),
     htmlmin = require('gulp-htmlmin'),
@@ -15,6 +17,7 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'), //图片缓存，只有图片替换了才压缩
     imagemin = require('gulp-imagemin'),
 
+    rev = require('gulp-rev-append'), // html添加版本号
     removeLogs = require('gulp-removelogs'),//删除调试代码
     del = require('del');
 
@@ -27,6 +30,7 @@ var path = {
     pages   : 'ngApp/partial'
 };
 
+console.log('<%= pkg.timestamp %>')
 
 // HTML处理
 gulp.task('html', function () {
@@ -44,17 +48,18 @@ gulp.task('html', function () {
         .pipe(htmlmin(options))
         .pipe(gulp.dest(path.dist + '/' + path.pages))
     gulp.src(path.mainHtml)
-        .pipe(htmlmin(options))
         .pipe(cheerio(function ($) {
             $('script').remove();
-            //$('link').remove();
+            $('link').remove();
             $('body').append('<script src="src/lib/site-lib.js"></script>' +
-                '<script src="ngApp/site-base.js"></script>');
-            //$('head').append('<link rel="stylesheet" href="app.full.min.css">');
+                '<script src="ngApp/site-base.js?v='+_version+'"></script>');
+            $('head').prepend('<link rel="stylesheet" href="src/styles/reset.css">');
         }))
+
+        .pipe(rev())
+        .pipe(htmlmin(options))
         .pipe(gulp.dest(path.dist + '/'))
 });
-
 //scripts
 gulp.task('scripts', function () {
     //lib
@@ -101,7 +106,7 @@ gulp.task('stylesPages', function () {
     gulp.src(path.pages + '/*.css')
         .pipe(processors.autoprefixer)
         .pipe(minifycss())
-        .pipe(gulp.dest(path.dist + '/' + path.pages ))
+        .pipe(gulp.dest(path.dist + '/' + path.pages))
 
 });
 
@@ -142,7 +147,7 @@ gulp.task('connect.dev', function () {
 });
 
 //发布 环境
-gulp.task('connect.build',['clean'], function () {
+gulp.task('connect.build', ['clean'], function () {
     connect.server({
         root: 'dist',
         port: 7002,
@@ -153,5 +158,5 @@ gulp.task('connect.build',['clean'], function () {
 gulp.task('dev', ['connect.dev']);
 
 gulp.task('build', ['connect.build'], function () {
-    gulp.start('html', 'scripts', 'stylesPages', 'stylesCommon','images');
+    gulp.start('scripts', 'stylesPages', 'stylesCommon', 'images', 'html');
 });
